@@ -2,11 +2,11 @@
 <p> HC-12 - one of the many good radio modules you can find on the market. And the most mysterious.</p>
 
 ## Introduction
-For one of my projects I bought a pair of them. Unfortunately, after about half a year, one of them either went deaf or silent, due to a broken radio IC
+For one of my projects I bought a pair of them. Unfortunately, after about half a year, one of them either **went deaf or silent**, due to a broken radio IC.
 
-I ended up buying another pair. Instead of importing from China, I got them from my local store, and they were fake! Bad reception, no config mode - these were the problems.<br>
-After returning them, I received another 3 pieces from the same store in China. And they work perfectly.<br>
-BUT, the new ones didn't want to speak with the old ones!
+I ended up buying another pair. Instead of importing from China, I got them from my local store, and **they were fake**! Bad reception, no config mode - these were the problems.<br>
+After returning them, I received another 3 pieces from the same store in China. And they work *perfectly*.<br>
+BUT, the new ones **didn't communicate with the old** ones!
 
 ## How could they be so different?
 I started looking at them closely. Same **Si4463** radio IC, same PCB but a **different MCU!**<br>
