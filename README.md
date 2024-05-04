@@ -1,5 +1,5 @@
 # HC-12 - Reverse Engineering
-<p> HC-12 - one of the many good radio modules you can find on the market. And the most mysterious.</p>
+HC-12 - one of the many good radio modules you can find on the market. *And the most mysterious*.
 
 ## Introduction
 For one of my projects I bought a pair of them. Unfortunately, after about half a year, one of them either **went deaf or silent**, due to a broken radio IC.
@@ -24,5 +24,5 @@ Specs: 8-bit 16MHz uC, 8KB flash, 1kB RAM.<br>
 ### Side-by-side comparison
 <p align="center">
 <img src="./photos/1st%20rev%20macro.jpg" alt="1st rev" style="width:45%"/>
-<img src="./photos/1st%20rev%20macro.jpg" alt="1st rev" style="width:45%"/>
+<img src="./photos/2nd%20rev%20macro.jpg" alt="1st rev" style="width:45%"/>
 </p>
