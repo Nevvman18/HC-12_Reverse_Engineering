@@ -24,5 +24,5 @@ Specs: 8-bit 16MHz uC, 8KB flash, 1kB RAM.<br>
 ### Side-by-side comparison
 <p align="center">
 <img src="./photos/1st%20rev%20macro.jpg" alt="1st rev" style="width:45%"/>
-<img src="./photos/2nd%20rev%20macro.jpg" alt="1st rev" style="width:45%"/>
+<img src="./photos/2nd%20rev%20macro.jpg" alt="2nd rev" style="width:45%"/>
 </p>
