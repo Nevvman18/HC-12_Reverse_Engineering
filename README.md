@@ -73,14 +73,14 @@ Transfer failed: STLink error (18): AP error
 pyocd>
 ```
 
-I was able to read status, reset, halt, change registers, but any operations of writing and **flash reading were unsuccessful**. The issue has to be with the ST-Link. Segger J-Link should work, but I don't own one.<br>
+I was able to read status, reset, halt, change registers, but any operations of writing and **flash reading were unsuccessful**. I also tried sending magic-byte ROP disable, which should work, but didn't. The issue has to be with the ST-Link. Segger J-Link should work, but I don't own one.<br>
 
 I wanted to somehow extract the firmware. I saw [this writeup](https://github.com/rumpeltux/hc12) (and also other things [there](https://itooktheredpill.irgendwo.org/2020/hc12-hacking/)) on someone reversing same HC-12 modules. *rumpeltux* found out, that with sending various bytes over serial port he was able to get the firmware from the device. Tried it with my version, but it didn't work, throwing assignment errors.<br>
 
 **My firmware extraction attempt from 1st module revision was unsuccessful.**
 
 ### Second revision
-This time it **went better**. STM8, being supported by my debuggers, is programmed by **SWIM** interface. This module responds to `AT+VER` with **`www.hc01.com HC-12 v2.6`**.<br>
+This time it **went better**. STM8, being supported by my debuggers, is programmed with **SWIM** interface. This module responds to `AT+VER` with **`www.hc01.com HC-12 v2.6`**.<br>
 I assumed that it won't go so easily, because in the previously mentioned post, *rumpeltux* had to power glitch the uC to be able to extract the firmware.<br>
 I connected the STLink with the STM8 using 2 test points on the back:
 <p align="center">
@@ -89,8 +89,8 @@ I connected the STLink with the STM8 using 2 test points on the back:
 </p><br>
 
 For the firmware extraction attempt, I used the official ST Visual Programmer.<br>
-First attempt - `Unable to read bytes [...]`. I thought that again it was the Read-Out Protection byte. But wait, clicked the button second time and... **I was able to read the whole firmware!** For known reasons I won't release the original firmware, but I will analyse it later on.<br>
-On the **OPTION BYTE** page the first register was set like this: **`ROP --- Read Out Protection OFF`**. I don't know if I was lucky with this batch. Maybe this version isn't properly secured? I didn't check the other modules, because of the need to solder the connections. If anyone wants, I can check that.
+First attempt - `Unable to read bytes [...]`. I thought that again it was the Read-Out Protection byte. But wait, clicked the button second time and... **I was able to read the whole firmware!** For known reasons I won't release the original firmware image, but I will analyse it later on.<br>
+On the **OPTION BYTE** page the first register was set to: **`ROP --- Read Out Protection OFF`**. I don't know if I was lucky with this batch. Maybe this version isn't properly secured? I didn't check the other modules, because of the need to solder the connections. If anyone wants, I can check that.
 
 
 ## Firmware analysis
@@ -103,9 +103,9 @@ Some interesting parts: <br>
 * At address **0x000080F1** there is `HC-12 v2.6...www.hc01.com` which is a string shown on the UART output.
 * At address **0x0000808E** there is `20210319` which looks like a compilation timestamp.
 * At address **0x000081F8** there is `How are you..Long time no see`. I don't know what that could be, it never shows up during operation.
-* There are also some bytes like `OK` `ERROR` `OK+B00..`.
+* There are also some bytes like `OK` `ERROR` `OK+B00..`, which mention AT command programming replies.
 
-The rest of the *PROGRAM MEMORY* is a compiled machine code. I want to decompile it in Ghidra? in future, because there seem to be plug-ins for disassembling STM8 firmware files. The bad news is that *rumpeltux* decompiled his module's `v2.4` firmware and said that re-using it is *not a viable option*.
+The rest of the *PROGRAM MEMORY* is a compiled machine firmware. I want to decompile it in **Ghidra** in future, because there seem to be plug-ins for disassembling STM8 firmware files. The bad news is that *rumpeltux* decompiled his module's `v2.4` firmware and said that re-using it is ***not a viable option***.
 
 ### DATA MEMORY
 This is the EEPROM memory that contains program variables, like transmitter mode, frequency, baud rate. I observed how they change with trying different settings.<br>
