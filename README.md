@@ -29,7 +29,7 @@ Specs: 8-bit 16MHz uC, 8KB flash, 1kB RAM.<br>
 
 ## Firmware extraction
 ### First revision
-Firstly, I checked it's version with the built-in AT command `AT+VER`, which got me a response of **`HC-12_V2.6`**. The weird thing is that some modules respond with 'HC-12 \[version]', and some with 'www.hc12.com \[version]'.<br>
+Firstly, I checked it's version with the built-in AT command `AT+VER`, which got me a response of **`HC-12_V2.6`**. The weird thing is that some modules respond with 'HC-12 \[version]', and some with 'www.hc01.com \[version]'.<br>
 
 The main MCU is a HK32 family uC. It is programmed using **SWD** interface. After a bit of research, I stumbled upon some [blog](https://nerdralph.blogspot.com/2020/12/trying-to-test-ten-cent-tiny-arm-m0-mcu.html) [posts](https://nerdralph.blogspot.com/2021/01/trying-to-test-ten-cent-tiny-arm-m0-mcu.html) featuring the programming adventure.<br>
 For programming it I wanted to use my ST-Link V2 probe. It turns out that during connection there occurs some sort of verification process, which doesn't allow me to read the firmware.<br>
