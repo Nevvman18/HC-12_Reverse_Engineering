@@ -90,7 +90,8 @@ I connected the STLink with the STM8 using 2 test points on the back:
 
 For the firmware extraction attempt, I used the official ST Visual Programmer.<br>
 First attempt - `Unable to read bytes [...]`. I thought that again it was the Read-Out Protection byte. But wait, clicked the button second time and... **I was able to read the whole firmware!** For known reasons I won't release the original firmware image, but I will analyse it later on.<br>
-On the **OPTION BYTE** page the first register was set to: **`ROP --- Read Out Protection OFF`**. I don't know if I was lucky with this batch. Maybe this version isn't properly secured? I didn't check the other modules, because of the need to solder the connections. If anyone wants, I can check that.
+On the **OPTION BYTE** page the first register was set to: **`ROP --- Read Out Protection OFF`**.<br>
+Compared the results with other 2 modules running the `v2.6` firmware and I can confirm that all 3 modules have exaclty the same memory contents. Also neither of them had ROP byte active.
 
 
 ## Firmware analysis
