@@ -113,10 +113,13 @@ This is the EEPROM memory that contains program variables, like transmitter mode
 For example, byte **0x00004001** stores the **radio channel**, `0x02` being channel 1 and `0xFE` being channel 127.<br>
 I manually set the channel byte to `0xFF`, to which the module responded with `OK+RC254`. I can also set this channel via AT command, though it exceeds the range of 1-127 mentioned in the datasheet. Weird? Setting byte to `0x02` occured in a `OK+RC127`, maybe the decimal values of channel bytes are divided by 2 to get it in a configuration number. Will check communication on these channels later.
 
+## Compatibility of v2.4 with v2.6
+I discussed about these modules with [rumpeltux](https://github.com/rumpeltux). He quickly managed to analyze my firmware dumps from v2.6. The AT+UPDATE dumping vulnerability that was present in v2.4 isn't there anymore with the newer releases. Fortunately, the radio ICs are similar, and the only difference is pinout difference (you can see it in a header file in his custom firmware). After making some minor changes, he managed to compile firmware for both versions and now both of them can communicate with each other. Will have to try that.
+
 ## Final thoughts
 These radio modules seem like a mystery. Tons of versions, clones and unconfirmed information can be found. In future I will try to decompile the firmware and analyse the module more.<br>
 There seem to be custom firmware projects on github, like these:
-* [*rumpeltux's* custom firmware](https://github.com/rumpeltux/hc12fw) - I will check later
+* [*rumpeltux's* custom firmware for v2.4 and v2.6](https://github.com/rumpeltux/hc12fw)
 * [AX.25 packet radio firmware](https://github.com/al177/hc12pj) - compiled it quickly and it works (at least the serial port)
 
 ## Useful links
